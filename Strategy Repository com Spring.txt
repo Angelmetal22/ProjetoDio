@@ -1,0 +1,40 @@
+3. Facade com Spring:
+
+O padrão Facade fornece uma interface simplificada para um conjunto de interfaces em um subsistema. No Spring, você pode criar um componente que age como uma fachada para serviços complexos. Aqui está um exemplo:
+
+java
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class OrderFacade {
+
+    private OrderService orderService;
+    private PaymentService paymentService;
+    private ShippingService shippingService;
+
+    @Autowired
+    public OrderFacade(
+            OrderService orderService,
+            PaymentService paymentService,
+            ShippingService shippingService) {
+        this.orderService = orderService;
+        this.paymentService = paymentService;
+        this.shippingService = shippingService;
+    }
+
+    public void placeOrder(Order order) {
+        orderService.createOrder(order);
+        paymentService.processPayment();
+        shippingService.shipOrder(order);
+    }
+}
+
+
+
+Spring Framework, são eles:
+
+Singleton
+Strategy/Repository
+Facade

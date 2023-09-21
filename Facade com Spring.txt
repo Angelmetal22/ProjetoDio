@@ -1,0 +1,46 @@
+2. Strategy/Repository com Spring:
+
+O padrão Strategy permite que você defina uma família de algoritmos, encapsule cada um deles e torne-os intercambiáveis. O Spring pode ser usado para gerenciar estratégias com injeção de dependência. Aqui está um exemplo:
+
+java
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class PaymentService {
+
+    private PaymentStrategy paymentStrategy;
+
+    @Autowired
+    public PaymentService(PaymentStrategy paymentStrategy) {
+        this.paymentStrategy = paymentStrategy;
+    }
+
+    public void processPayment() {
+        paymentStrategy.makePayment();
+    }
+}
+
+@Component
+public interface PaymentStrategy {
+    void makePayment();
+}
+
+@Component
+public class CreditCardPayment implements PaymentStrategy {
+
+    @Override
+    public void makePayment() {
+        System.out.println("Pagamento com cartão de crédito processado.");
+    }
+}
+
+@Component
+public class PayPalPayment implements PaymentStrategy {
+
+    @Override
+    public void makePayment() {
+        System.out.println("Pagamento com PayPal processado.");
+    }
+}

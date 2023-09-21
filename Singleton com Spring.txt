@@ -1,0 +1,42 @@
+
+
+
+public class Singleton {
+    // A instância única da classe Singleton
+    private static Singleton instance;
+
+    // Construtor privado para evitar a criação de instâncias fora desta classe
+    private Singleton() {
+    }
+
+    // Método estático para obter a instância única
+    public static Singleton getInstance() {
+        // Se a instância ainda não existe, cria uma nova
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    // Métodos da classe Singleton
+    public void showMessage() {
+        System.out.println("Exemplo de Singleton em Java.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Obter a instância única do Singleton
+        Singleton singleton = Singleton.getInstance();
+
+        // Chamar um método da instância Singleton
+        singleton.showMessage();
+    }
+}
+
+
+
+
+
+
+
